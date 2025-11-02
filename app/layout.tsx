@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Instrument_Serif, Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
+import { Header } from "@/components/header"
 
 const instrumentSerif = Instrument_Serif({
   weight: ["400"],
@@ -29,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${instrumentSerif.variable} font-sans antialiased`}>
+        <Header />
         {children}
         <Analytics />
       </body>

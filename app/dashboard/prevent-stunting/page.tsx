@@ -2,10 +2,8 @@
 
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/3d-button"
-import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { DashboardLayout } from "@/components/dashboard-layout"
-import { TrendingDown, AlertTriangle, Target, Scale, Apple, Activity, BookOpen, CheckCircle } from "lucide-react"
+import { TrendingDown, AlertTriangle, Target, Scale, Apple, Activity, BookOpen, CheckCircle, Heart } from "lucide-react"
 
 const stuntingData = {
   currentStatus: "normal",
@@ -123,78 +121,133 @@ export default function StuntingPreventionPage() {
   }
 
   return (
+    <div className="min-h-screen bg-background py-12 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="mb-8"
+          className="mb-12 text-center"
         >
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-foreground mb-2">Growth & Development Monitoring</h1>
-              <p className="text-muted-foreground">Prevent stunting and ensure healthy fetal development</p>
-            </div>
-            <Button size="lg" className="rounded-full">
-              <Target className="w-5 h-5 mr-2" />
-              Update Measurements
-            </Button>
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-linear-to-br from-[#1f4b4a] to-[#2d6a68] mb-6">
+            <Target className="w-8 h-8 text-white" />
           </div>
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-normal text-foreground mb-4">
+            Growth & Development Monitoring
+          </h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+            Prevent stunting and ensure healthy fetal development with comprehensive tracking
+          </p>
+          <Button size="lg" className="rounded-full">
+            <Target className="w-5 h-5 mr-2" />
+            Update Measurements
+          </Button>
         </motion.div>
 
         {/* Current Status Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <Card className="p-6 text-center bg-linear-to-br from-[#1f4b4a]/5 to-[#2d6a68]/5 border-[#1f4b4a]/20">
-            <CheckCircle className="w-12 h-12 text-[#1f4b4a] mx-auto mb-4" />
-            <div className="text-xl font-bold text-[#1f4b4a] mb-2">Normal</div>
-            <div className="text-sm text-muted-foreground">Current Status</div>
-          </Card>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="bg-secondary/30 rounded-3xl p-8 border border-border hover:bg-secondary/50 transition-all duration-300"
+          >
+            <div className="flex flex-col items-center text-center">
+              <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-[#1f4b4a] to-[#2d6a68] flex items-center justify-center mb-4">
+                <CheckCircle className="w-8 h-8 text-white" />
+              </div>
+              <div className="text-2xl font-bold text-foreground mb-2">Normal</div>
+              <div className="text-sm text-muted-foreground font-medium">Current Status</div>
+            </div>
+          </motion.div>
 
-          <Card className="p-6 text-center bg-linear-to-br from-green-50 to-emerald-50 border-green-200">
-            <Scale className="w-12 h-12 text-green-600 mx-auto mb-4" />
-            <div className="text-xl font-bold text-green-600 mb-2">Low Risk</div>
-            <div className="text-sm text-muted-foreground">Stunting Risk</div>
-          </Card>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-secondary/30 rounded-3xl p-8 border border-border hover:bg-secondary/50 transition-all duration-300"
+          >
+            <div className="flex flex-col items-center text-center">
+              <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-[#2d6a68] to-[#3d7a78] flex items-center justify-center mb-4">
+                <Scale className="w-8 h-8 text-white" />
+              </div>
+              <div className="text-2xl font-bold text-foreground mb-2">Low Risk</div>
+              <div className="text-sm text-muted-foreground font-medium">Stunting Risk</div>
+            </div>
+          </motion.div>
 
-          <Card className="p-6 text-center bg-linear-to-br from-blue-50 to-indigo-50 border-blue-200">
-            <TrendingDown className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-            <div className="text-xl font-bold text-blue-600 mb-2">50th</div>
-            <div className="text-sm text-muted-foreground">Growth Percentile</div>
-          </Card>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="bg-secondary/30 rounded-3xl p-8 border border-border hover:bg-secondary/50 transition-all duration-300"
+          >
+            <div className="flex flex-col items-center text-center">
+              <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-[#3d7a78] to-[#4d8a88] flex items-center justify-center mb-4">
+                <TrendingDown className="w-8 h-8 text-white" />
+              </div>
+              <div className="text-2xl font-bold text-foreground mb-2">50th</div>
+              <div className="text-sm text-muted-foreground font-medium">Growth Percentile</div>
+            </div>
+          </motion.div>
 
-          <Card className="p-6 text-center bg-linear-to-br from-purple-50 to-pink-50 border-purple-200">
-            <Target className="w-12 h-12 text-purple-600 mx-auto mb-4" />
-            <div className="text-xl font-bold text-purple-600 mb-2">On Track</div>
-            <div className="text-sm text-muted-foreground">Development</div>
-          </Card>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="bg-secondary/30 rounded-3xl p-8 border border-border hover:bg-secondary/50 transition-all duration-300"
+          >
+            <div className="flex flex-col items-center text-center">
+              <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-[#4d8a88] to-[#5d9a98] flex items-center justify-center mb-4">
+                <Target className="w-8 h-8 text-white" />
+              </div>
+              <div className="text-2xl font-bold text-foreground mb-2">On Track</div>
+              <div className="text-sm text-muted-foreground font-medium">Development</div>
+            </div>
+          </motion.div>
         </div>
 
         {/* Current Measurements */}
-        <Card className="p-6 mb-8 border-l-4 border-l-green-500">
-          <h2 className="text-xl font-semibold mb-4">Latest Measurements</h2>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="bg-secondary/30 rounded-3xl p-8 border border-border mb-12"
+        >
+          <h2 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
+            <Heart className="w-6 h-6 text-[#1f4b4a]" />
+            Latest Measurements
+          </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="text-center p-4 bg-green-50 rounded-xl">
-              <div className="text-lg font-bold text-green-700">145 lbs</div>
+            <div className="bg-background/50 rounded-2xl p-5 border border-border/50 text-center">
+              <div className="text-2xl font-bold text-foreground mb-1">145 lbs</div>
               <div className="text-sm text-muted-foreground">Weight</div>
             </div>
-            <div className="text-center p-4 bg-blue-50 rounded-xl">
-              <div className="text-lg font-bold text-blue-700">28 cm</div>
+            <div className="bg-background/50 rounded-2xl p-5 border border-border/50 text-center">
+              <div className="text-2xl font-bold text-foreground mb-1">28 cm</div>
               <div className="text-sm text-muted-foreground">Fundal Height</div>
             </div>
-            <div className="text-center p-4 bg-purple-50 rounded-xl">
-              <div className="text-lg font-bold text-purple-700">2.5 lbs</div>
+            <div className="bg-background/50 rounded-2xl p-5 border border-border/50 text-center">
+              <div className="text-2xl font-bold text-foreground mb-1">2.5 lbs</div>
               <div className="text-sm text-muted-foreground">Baby Weight</div>
             </div>
-            <div className="text-center p-4 bg-orange-50 rounded-xl">
-              <div className="text-lg font-bold text-orange-700">14.8 in</div>
+            <div className="bg-background/50 rounded-2xl p-5 border border-border/50 text-center">
+              <div className="text-2xl font-bold text-foreground mb-1">14.8 in</div>
               <div className="text-sm text-muted-foreground">Baby Length</div>
             </div>
           </div>
-        </Card>
+        </motion.div>
 
         {/* Prevention Strategies */}
-        <div className="mb-8">
-          <h2 className="text-2xl font-semibold mb-6">Prevention Strategies</h2>
+        <div className="mb-12">
+          <div className="text-center mb-8">
+            <h2 className="font-serif text-3xl md:text-4xl font-normal text-foreground mb-3">
+              Prevention Strategies
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Comprehensive approaches to ensure healthy development
+            </p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {preventionTips.map((tip, index) => (
               <motion.div
@@ -202,68 +255,103 @@ export default function StuntingPreventionPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
+                className="bg-secondary/30 rounded-3xl p-8 border border-border hover:bg-secondary/50 transition-all duration-300 h-full"
               >
-                <Card className="p-6 h-full">
-                  <div className="flex items-center mb-4">
-                    <div className="p-3 bg-[#1f4b4a]/10 rounded-xl mr-4">
-                      <div className="text-[#1f4b4a]">{tip.icon}</div>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold">{tip.title}</h3>
-                      <p className="text-sm text-muted-foreground">{tip.description}</p>
-                    </div>
+                <div className="flex items-start mb-6">
+                  <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-[#1f4b4a] to-[#2d6a68] flex items-center justify-center shrink-0 mr-4">
+                    <div className="text-white">{tip.icon}</div>
                   </div>
-                  <ul className="space-y-2">
-                    {tip.actions.map((action, idx) => (
-                      <li key={idx} className="flex items-start text-sm">
-                        <CheckCircle className="w-4 h-4 text-green-600 mr-2 mt-0.5 shrink-0" />
-                        {action}
-                      </li>
-                    ))}
-                  </ul>
-                </Card>
+                  <div>
+                    <h3 className="text-xl font-semibold text-foreground mb-2">{tip.title}</h3>
+                    <p className="text-sm text-muted-foreground">{tip.description}</p>
+                  </div>
+                </div>
+                <ul className="space-y-3">
+                  {tip.actions.map((action, idx) => (
+                    <li key={idx} className="flex items-start text-sm text-muted-foreground">
+                      <CheckCircle className="w-4 h-4 text-[#1f4b4a] mr-3 mt-0.5 shrink-0" />
+                      {action}
+                    </li>
+                  ))}
+                </ul>
               </motion.div>
             ))}
           </div>
         </div>
 
         {/* Nutrition Plan */}
-        <Card className="p-6 mb-8">
-          <h2 className="text-xl font-semibold mb-6">Daily Nutrition Targets</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="bg-secondary/30 rounded-3xl p-8 border border-border mb-12"
+        >
+          <h2 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
+            <Apple className="w-6 h-6 text-[#1f4b4a]" />
+            Daily Nutrition Targets
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {nutritionPlan.map((nutrient, index) => (
-              <div key={nutrient.nutrient} className="p-4 bg-gray-50 rounded-xl">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="font-semibold">{nutrient.nutrient}</h3>
-                  <Badge variant="outline">{nutrient.dailyTarget}</Badge>
+              <div key={nutrient.nutrient} className="bg-background/50 rounded-2xl p-6 border border-border/50">
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="font-semibold text-foreground text-lg">{nutrient.nutrient}</h3>
+                  <Badge variant="outline" className="text-[#1f4b4a] border-[#1f4b4a]/30">{nutrient.dailyTarget}</Badge>
                 </div>
-                <p className="text-sm text-muted-foreground mb-2">{nutrient.importance}</p>
+                <p className="text-sm text-muted-foreground mb-3 leading-relaxed">{nutrient.importance}</p>
                 <div className="text-sm">
-                  <strong>Sources:</strong> {nutrient.sources.join(", ")}
+                  <strong className="text-foreground">Sources:</strong>{" "}
+                  <span className="text-muted-foreground">{nutrient.sources.join(", ")}</span>
                 </div>
               </div>
             ))}
           </div>
-        </Card>
+        </motion.div>
 
         {/* Educational Content */}
-        <Card className="p-8 bg-linear-to-br from-[#1f4b4a]/5 to-[#2d6a68]/5">
-          <h3 className="text-2xl font-semibold mb-6 text-center">🌱 Understanding Healthy Growth</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <h4 className="font-semibold mb-2">What is Stunting?</h4>
-              <p className="text-sm text-muted-foreground mb-4">Stunting occurs when a child doesn't reach their growth potential due to poor nutrition, repeated infections, or inadequate care during critical periods.</p>
-              <h4 className="font-semibold mb-2">Prevention is Key</h4>
-              <p className="text-sm text-muted-foreground">The first 1,000 days (from conception to age 2) are crucial for preventing stunting and ensuring optimal development.</p>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
+          className="bg-secondary/30 rounded-3xl p-10 border border-border"
+        >
+          <div className="text-center mb-8">
+            <h3 className="font-serif text-3xl md:text-4xl font-normal text-foreground mb-3">
+              🌱 Understanding Healthy Growth
+            </h3>
+            <p className="text-muted-foreground text-lg">
+              Essential knowledge for preventing stunting and ensuring optimal development
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-background/50 rounded-2xl p-6 border border-border/50">
+              <h4 className="font-semibold text-foreground text-lg mb-3">What is Stunting?</h4>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                Stunting occurs when a child doesn't reach their growth potential due to poor nutrition, 
+                repeated infections, or inadequate care during critical periods.
+              </p>
+              <h4 className="font-semibold text-foreground text-lg mb-3">Prevention is Key</h4>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                The first 1,000 days (from conception to age 2) are crucial for preventing stunting 
+                and ensuring optimal development.
+              </p>
             </div>
-            <div>
-              <h4 className="font-semibold mb-2">During Pregnancy</h4>
-              <p className="text-sm text-muted-foreground mb-4">Proper maternal nutrition and prenatal care are essential for preventing stunting before birth.</p>
-              <h4 className="font-semibold mb-2">Monitoring Progress</h4>
-              <p className="text-sm text-muted-foreground">Regular check-ups help track both maternal and fetal growth to identify and address any concerns early.</p>
+            
+            <div className="bg-background/50 rounded-2xl p-6 border border-border/50">
+              <h4 className="font-semibold text-foreground text-lg mb-3">During Pregnancy</h4>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                Proper maternal nutrition and prenatal care are essential for preventing stunting 
+                before birth.
+              </p>
+              <h4 className="font-semibold text-foreground text-lg mb-3">Monitoring Progress</h4>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Regular check-ups help track both maternal and fetal growth to identify and address 
+                any concerns early.
+              </p>
             </div>
           </div>
-        </Card>
+        </motion.div>
       </div>
+    </div>
   )
 }

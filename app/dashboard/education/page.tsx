@@ -2,9 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/3d-button"
-import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { DashboardLayout } from "@/components/dashboard-layout"
 import { BookOpen, Play, Download, Clock, Star, Users, Search } from "lucide-react"
 
 const educationContent = [
@@ -102,59 +100,104 @@ export default function EducationPage() {
   }
 
   return (
+    <div className="min-h-screen bg-background py-12 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="mb-8"
+          className="mb-12 text-center"
         >
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-foreground mb-2">Pregnancy Education</h1>
-              <p className="text-muted-foreground">Learn everything you need for a healthy pregnancy journey</p>
-            </div>
-            <div className="flex gap-3">
-              <Button variant="outline" size="lg">
-                <Search className="w-5 h-5 mr-2" />
-                Search
-              </Button>
-              <Button size="lg" className="rounded-full">
-                <Download className="w-5 h-5 mr-2" />
-                My Library
-              </Button>
-            </div>
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-linear-to-br from-[#1f4b4a] to-[#2d6a68] mb-6">
+            <BookOpen className="w-8 h-8 text-white" />
+          </div>
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-normal text-foreground mb-4">
+            Pregnancy Education
+          </h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+            Learn everything you need for a healthy and informed pregnancy journey
+          </p>
+          <div className="flex flex-wrap gap-3 justify-center">
+            <Button variant="outline" size="lg" className="rounded-full">
+              <Search className="w-5 h-5 mr-2" />
+              Search
+            </Button>
+            <Button size="lg" className="rounded-full">
+              <Download className="w-5 h-5 mr-2" />
+              My Library
+            </Button>
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <Card className="p-6 text-center bg-linear-to-br from-[#1f4b4a]/5 to-[#2d6a68]/5 border-[#1f4b4a]/20">
-            <BookOpen className="w-12 h-12 text-[#1f4b4a] mx-auto mb-4" />
-            <div className="text-3xl font-bold text-[#1f4b4a] mb-2">{educationContent.length}</div>
-            <div className="text-sm text-muted-foreground">Educational Resources</div>
-          </Card>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="bg-secondary/30 rounded-3xl p-8 border border-border hover:bg-secondary/50 transition-all duration-300"
+          >
+            <div className="flex flex-col items-center text-center">
+              <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-[#1f4b4a] to-[#2d6a68] flex items-center justify-center mb-4">
+                <BookOpen className="w-8 h-8 text-white" />
+              </div>
+              <div className="text-4xl font-bold text-foreground mb-2">{educationContent.length}</div>
+              <div className="text-sm text-muted-foreground font-medium">Educational Resources</div>
+            </div>
+          </motion.div>
 
-          <Card className="p-6 text-center bg-linear-to-br from-blue-50 to-indigo-50 border-blue-200">
-            <Play className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-            <div className="text-3xl font-bold text-blue-600 mb-2">{educationContent.filter(c => c.type === 'video').length}</div>
-            <div className="text-sm text-muted-foreground">Video Lessons</div>
-          </Card>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-secondary/30 rounded-3xl p-8 border border-border hover:bg-secondary/50 transition-all duration-300"
+          >
+            <div className="flex flex-col items-center text-center">
+              <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-[#2d6a68] to-[#3d7a78] flex items-center justify-center mb-4">
+                <Play className="w-8 h-8 text-white" />
+              </div>
+              <div className="text-4xl font-bold text-foreground mb-2">{educationContent.filter(c => c.type === 'video').length}</div>
+              <div className="text-sm text-muted-foreground font-medium">Video Lessons</div>
+            </div>
+          </motion.div>
 
-          <Card className="p-6 text-center bg-linear-to-br from-green-50 to-emerald-50 border-green-200">
-            <Star className="w-12 h-12 text-green-600 mx-auto mb-4" />
-            <div className="text-3xl font-bold text-green-600 mb-2">4.8</div>
-            <div className="text-sm text-muted-foreground">Average Rating</div>
-          </Card>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="bg-secondary/30 rounded-3xl p-8 border border-border hover:bg-secondary/50 transition-all duration-300"
+          >
+            <div className="flex flex-col items-center text-center">
+              <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-[#3d7a78] to-[#4d8a88] flex items-center justify-center mb-4">
+                <Star className="w-8 h-8 text-white" />
+              </div>
+              <div className="text-4xl font-bold text-foreground mb-2">4.8</div>
+              <div className="text-sm text-muted-foreground font-medium">Average Rating</div>
+            </div>
+          </motion.div>
 
-          <Card className="p-6 text-center bg-linear-to-br from-purple-50 to-pink-50 border-purple-200">
-            <Users className="w-12 h-12 text-purple-600 mx-auto mb-4" />
-            <div className="text-3xl font-bold text-purple-600 mb-2">9.3K</div>
-            <div className="text-sm text-muted-foreground">Total Views</div>
-          </Card>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="bg-secondary/30 rounded-3xl p-8 border border-border hover:bg-secondary/50 transition-all duration-300"
+          >
+            <div className="flex flex-col items-center text-center">
+              <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-[#4d8a88] to-[#5d9a98] flex items-center justify-center mb-4">
+                <Users className="w-8 h-8 text-white" />
+              </div>
+              <div className="text-4xl font-bold text-foreground mb-2">9.3K</div>
+              <div className="text-sm text-muted-foreground font-medium">Total Views</div>
+            </div>
+          </motion.div>
         </div>
 
         {/* Categories */}
-        <div className="flex flex-wrap gap-2 mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="flex flex-wrap gap-3 mb-12 justify-center"
+        >
           {categories.map((category, index) => (
             <Button
               key={category}
@@ -165,37 +208,38 @@ export default function EducationPage() {
               {category}
             </Button>
           ))}
-        </div>
+        </motion.div>
 
         {/* Featured Content */}
-        <div className="mb-8">
-          <h2 className="text-2xl font-semibold mb-6">Featured Content</h2>
+        <div className="mb-12">
+          <h2 className="font-serif text-3xl font-normal text-foreground mb-8 text-center">Featured Content</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {educationContent.map((content, index) => (
               <motion.div
                 key={content.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: 0.6 + index * 0.1 }}
+                className="bg-secondary/30 rounded-3xl p-8 border border-border hover:bg-secondary/50 transition-all duration-300 flex flex-col h-full"
               >
-                <Card className="p-6 hover:shadow-lg transition-shadow h-full">
-                  <div className="flex justify-between items-start mb-4">
-                    <Badge className={getTypeColor(content.type)}>
-                      {getTypeIcon(content.type)}
-                      <span className="ml-2 capitalize">{content.type}</span>
-                    </Badge>
-                    <div className="flex items-center text-sm text-muted-foreground">
-                      <Star className="w-4 h-4 text-yellow-500 mr-1" />
-                      {content.rating}
-                    </div>
+                <div className="flex justify-between items-start mb-4">
+                  <Badge className={getTypeColor(content.type)}>
+                    {getTypeIcon(content.type)}
+                    <span className="ml-2 capitalize">{content.type}</span>
+                  </Badge>
+                  <div className="flex items-center text-sm text-foreground">
+                    <Star className="w-4 h-4 text-yellow-500 fill-yellow-500 mr-1" />
+                    {content.rating}
                   </div>
+                </div>
 
-                  <h3 className="text-lg font-semibold mb-2">{content.title}</h3>
-                  <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
-                    {content.description}
-                  </p>
+                <h3 className="text-xl font-semibold text-foreground mb-3">{content.title}</h3>
+                <p className="text-muted-foreground text-sm mb-4 line-clamp-3 leading-relaxed grow">
+                  {content.description}
+                </p>
 
-                  <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
+                <div className="bg-background/50 rounded-2xl p-4 border border-border/50 mb-4">
+                  <div className="flex items-center justify-between text-sm text-muted-foreground">
                     <div className="flex items-center">
                       <Clock className="w-4 h-4 mr-1" />
                       {content.duration}
@@ -205,51 +249,73 @@ export default function EducationPage() {
                       {content.views.toLocaleString()} views
                     </div>
                   </div>
+                </div>
 
-                  <div className="flex flex-wrap gap-1 mb-4">
-                    {content.tags.slice(0, 3).map((tag, idx) => (
-                      <Badge key={idx} variant="outline" className="text-xs">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {content.tags.slice(0, 3).map((tag, idx) => (
+                    <Badge key={idx} variant="outline" className="text-xs">
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
 
-                  <Button className="w-full">
-                    {content.type === 'video' || content.type === 'course' ? 'Watch Now' : 'Read Now'}
-                  </Button>
-                </Card>
+                <Button className="w-full rounded-full">
+                  {content.type === 'video' || content.type === 'course' ? 'Watch Now' : 'Read Now'}
+                </Button>
               </motion.div>
             ))}
           </div>
         </div>
 
         {/* Learning Path */}
-        <Card className="p-8 bg-linear-to-br from-[#1f4b4a]/5 to-[#2d6a68]/5">
-          <h3 className="text-2xl font-semibold mb-6 text-center">📚 Recommended Learning Path</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-[#1f4b4a] rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-white font-bold text-xl">1</span>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.2 }}
+          className="bg-secondary/30 rounded-3xl p-10 border border-border"
+        >
+          <div className="text-center mb-10">
+            <h3 className="font-serif text-3xl md:text-4xl font-normal text-foreground mb-3">
+              📚 Recommended Learning Path
+            </h3>
+            <p className="text-muted-foreground text-lg">
+              Follow this structured journey through your pregnancy trimesters
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-background/50 rounded-2xl p-6 border border-border/50 text-center">
+              <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-[#1f4b4a] to-[#2d6a68] flex items-center justify-center mx-auto mb-4">
+                <span className="text-white font-bold text-2xl">1</span>
               </div>
-              <h4 className="font-semibold mb-2">First Trimester</h4>
-              <p className="text-sm text-muted-foreground">Nutrition basics, prenatal vitamins, and early pregnancy care</p>
+              <h4 className="font-semibold text-foreground text-lg mb-3">First Trimester</h4>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Nutrition basics, prenatal vitamins, and early pregnancy care essentials
+              </p>
             </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-[#2d6a68] rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-white font-bold text-xl">2</span>
+            
+            <div className="bg-background/50 rounded-2xl p-6 border border-border/50 text-center">
+              <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-[#2d6a68] to-[#3d7a78] flex items-center justify-center mx-auto mb-4">
+                <span className="text-white font-bold text-2xl">2</span>
               </div>
-              <h4 className="font-semibold mb-2">Second Trimester</h4>
-              <p className="text-sm text-muted-foreground">Exercise routines, fetal development, and preparing for birth</p>
+              <h4 className="font-semibold text-foreground text-lg mb-3">Second Trimester</h4>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Exercise routines, fetal development tracking, and preparing for birth
+              </p>
             </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-[#3d7a78] rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-white font-bold text-xl">3</span>
+            
+            <div className="bg-background/50 rounded-2xl p-6 border border-border/50 text-center">
+              <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-[#3d7a78] to-[#4d8a88] flex items-center justify-center mx-auto mb-4">
+                <span className="text-white font-bold text-2xl">3</span>
               </div>
-              <h4 className="font-semibold mb-2">Third Trimester</h4>
-              <p className="text-sm text-muted-foreground">Labor preparation, breastfeeding, and newborn care basics</p>
+              <h4 className="font-semibold text-foreground text-lg mb-3">Third Trimester</h4>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Labor preparation, breastfeeding basics, and newborn care essentials
+              </p>
             </div>
           </div>
-        </Card>
+        </motion.div>
       </div>
+    </div>
   )
 }

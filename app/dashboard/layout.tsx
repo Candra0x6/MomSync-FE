@@ -153,7 +153,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         {/* Bottom Actions */}
         <div className="mt-8 pt-6 border-t border-border space-y-2">
           <Link
-            href="/settings"
+            href="/dashboard/settings"
             className="group flex items-center gap-3 p-4 rounded-xl hover:bg-secondary/50 text-foreground transition-all duration-200"
           >
             <Settings className="w-5 h-5 text-muted-foreground group-hover:text-[#1f4b4a]" />
