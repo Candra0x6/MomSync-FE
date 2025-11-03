@@ -21,9 +21,7 @@ export function Header() {
           </Link>
 
           <nav className="hidden lg:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
-            <Link href="/dashboard" className="text-sm text-foreground font-bold hover:text-[#1f4b4a] transition-colors">
-              Dashboard
-            </Link>
+        
             <Link href="/about" className="text-sm text-foreground font-bold hover:text-[#1f4b4a] transition-colors">
               About
             </Link>
@@ -34,7 +32,7 @@ export function Header() {
           </nav>
 
           {/* CTA Button */}
-          <Button onClick={() => router.push("/auth/login")} className="rounded-full px-6">Free Consultation 🤱</Button>
+          <Button onClick={() => router.push("/dashboard")} className="rounded-full px-6">Dashboard 🤱</Button>
         </div>
       </div>
     </header>
