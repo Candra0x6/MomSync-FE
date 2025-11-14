@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build",
+    "build": "pnpm install --save-dev eslint && pnpm run db:generate && next build",
     "dev": "next dev",
     "lint": "eslint .",
     "start": "next start",
@@ -73,8 +73,9 @@
     "zod": "3.25.76"
   },
   "devDependencies": {
+    "eslint": "^8.50.0",
     "@tailwindcss/postcss": "^4.1.9",
-    "@types/node": "^22",
+    "@types-node": "^22",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "dotenv": "^17.2.3",
