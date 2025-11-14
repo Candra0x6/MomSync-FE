@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "pnpm install --save-dev eslint && pnpm run db:generate && next build",
+    "build": "npm install --save-dev eslint && npm run db:generate && next build",
     "dev": "next dev",
     "lint": "eslint .",
     "start": "next start",
