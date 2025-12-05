@@ -68,7 +68,7 @@ export default function HealthMonitoringPage() {
   useEffect(() => {
     const loadLatestRecord = async () => {
       try {
-        await fetchHealthRecord("cmhyd6ku2000353mgmnl5q49h").then((data) => {
+        await fetchHealthRecord("cmisaecvd000353mckwfy7h6u").then((data) => {
           setLocalLatestSigns(data)
           console.log(data)
           setEditedValues({

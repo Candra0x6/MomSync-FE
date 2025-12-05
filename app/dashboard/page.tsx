@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/3d-button"
 import { Badge } from "@/components/ui/badge"
@@ -20,8 +21,9 @@ import {
   AlertCircle
 } from "lucide-react"
 import { LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
+import { useHealthMonitoring } from "@/hooks/use-health-monitoring"
 
-// Sample data for mini charts
+// Sample data for mini charts - will be updated from API
 const miniChartData = [
   { time: "06:00", value: 72 },
   { time: "09:00", value: 75 },
@@ -39,75 +41,6 @@ const recoveryData = [
   { time: "Fri", recovery: 82, sleep: 8.0, stress: 32 },
   { time: "Sat", recovery: 85, sleep: 8.5, stress: 28 },
   { time: "Sun", recovery: 80, sleep: 8.2, stress: 30 }
-]
-
-const healthMetrics = [
-  {
-    id: 1,
-    title: "Heart Rate",
-    value: "72",
-    unit: "BPM",
-    icon: Heart,
-    timestamp: "2 minutes ago",
-    status: "normal",
-    range: "60-100 BPM",
-    color: "from-red-500 to-pink-500"
-  },
-  {
-    id: 2,
-    title: "Blood Pressure",
-    value: "120/80",
-    unit: "mmHg",
-    icon: Gauge,
-    timestamp: "5 minutes ago",
-    status: "normal",
-    range: "<120/80",
-    color: "from-blue-500 to-cyan-500"
-  },
-  {
-    id: 3,
-    title: "BMI",
-    value: "24.5",
-    unit: "kg/m²",
-    icon: Weight,
-    timestamp: "Today",
-    status: "normal",
-    range: "18.5-24.9",
-    color: "from-green-500 to-emerald-500"
-  },
-  {
-    id: 4,
-    title: "SpO₂",
-    value: "98",
-    unit: "%",
-    icon: Wind,
-    timestamp: "3 minutes ago",
-    status: "normal",
-    range: "95-100%",
-    color: "from-purple-500 to-violet-500"
-  },
-  {
-    id: 5,
-    title: "Temperature",
-    value: "98.6",
-    unit: "°F",
-    icon: Thermometer,
-    timestamp: "1 minute ago",
-    status: "normal",
-    range: "98.6°F",
-    color: "from-orange-500 to-amber-500"
-  },
-  {
-    id: 6,
-    title: "Blood Sugar",
-    value: "105",
-    unit: "mg/dL",
-    icon: Droplets,
-    timestamp: "10 minutes ago",
-    status: "normal",
-    range: "70-100 fasting",
-    color: "from-yellow-500 to-orange-500"
-  }
 ]
 
 const upcomingAppointments = [
@@ -136,9 +69,108 @@ const doctors = [
 ]
 
 export default function HealthDashboardPage() {
+  const [latestHealthData, setLatestHealthData] = useState<any>(null)
+  const [loading, setLoading] = useState(true)
+  const { fetchHealthRecord } = useHealthMonitoring()
+
+  // Fetch latest health data on component mount
+  useEffect(() => {
+    const loadLatestHealthData = async () => {
+      try {
+        setLoading(true)
+        // Fetch the latest health monitoring record
+        const data = await fetchHealthRecord("cmisaecvd000353mckwfy7h6u")
+        setLatestHealthData(data)
+      } catch (error) {
+        console.error("Failed to load health data:", error)
+        // Keep default values if fetch fails
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadLatestHealthData()
+  }, [])
+
+  // Generate dynamic health metrics from fetched data
+  console.log("Latest Health Data:", latestHealthData)
+  const getHealthMetrics = () => {
+    const defaultMetrics = [
+      {
+        id: 1,
+        title: "Heart Rate",
+        value: String(latestHealthData?.heart_rate) || "0",
+        unit: "BPM",
+        icon: Heart,
+        timestamp: "2 minutes ago",
+        status: "normal",
+        range: "60-100 BPM",
+        color: "from-red-500 to-pink-500"
+      },
+      {
+        id: 2,
+        title: "Blood Pressure",
+        value: latestHealthData?.blood_pressure || "120/80",
+        unit: "mmHg",
+        icon: Gauge,
+        timestamp: "5 minutes ago",
+        status: "normal",
+        range: "<120/80",
+        color: "from-blue-500 to-cyan-500"
+      },
+      {
+        id: 3,
+        title: "BMI",
+        value: "24.5",
+        unit: "kg/m²",
+        icon: Weight,
+        timestamp: "Today",
+        status: "normal",
+        range: "18.5-24.9",
+        color: "from-green-500 to-emerald-500"
+      },
+      {
+        id: 4,
+        title: "SpO₂",
+        value: "98",
+        unit: "%",
+        icon: Wind,
+        timestamp: "3 minutes ago",
+        status: "normal",
+        range: "95-100%",
+        color: "from-purple-500 to-violet-500"
+      },
+      {
+        id: 5,
+        title: "Temperature",
+        value: "98.6",
+        unit: "°F",
+        icon: Thermometer,
+        timestamp: "1 minute ago",
+        status: "normal",
+        range: "98.6°F",
+        color: "from-orange-500 to-amber-500"
+      },
+      {
+        id: 6,
+        title: "Blood Sugar",
+        value: "105",
+        unit: "mg/dL",
+        icon: Droplets,
+        timestamp: "10 minutes ago",
+        status: "normal",
+        range: "70-100 fasting",
+        color: "from-yellow-500 to-orange-500"
+      }
+    ]
+    return defaultMetrics
+  }
+
   const getStatusBadgeColor = (status: string) => {
     return status === "normal" ? "bg-green-100 text-green-700" : "bg-yellow-100 text-yellow-700"
   }
+  
+  const healthMetrics = getHealthMetrics()
 
   const MetricCard = ({ metric }: { metric: typeof healthMetrics[0] }) => {
     const IconComponent = metric.icon
@@ -200,10 +232,16 @@ export default function HealthDashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-secondary/5 sm:px-6">
+    <div className="min-h-screen bg-linear-to-br from-background to-secondary/5 sm:px-6">
       <div className="">
       
+      {loading && (
+        <div className="flex items-center justify-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1f4b4a]" />
+        </div>
+      )}
 
+        {!loading && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left Column - Metrics and Recovery */}
           <div className="lg:col-span-2 space-y-6">
@@ -456,6 +494,7 @@ export default function HealthDashboardPage() {
             </motion.div>
           </div>
         </div>
+        )}
       </div>
     </div>
   )
